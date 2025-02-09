@@ -26,7 +26,12 @@ const ClockForm: React.FC = () => {
   // обработчик изменения полей ввода
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    name === 'name' ? setName(value) : setTimezone(Number(value));
+    // проверяем, какое поле изменяется и соответственно меняем состояние
+    if (name === 'name') {
+      setName(value.trim());
+    } else {
+      setTimezone(value === '' ? '' : Number(value));
+    }
   }
 
   return (
